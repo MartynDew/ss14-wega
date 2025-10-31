@@ -15,8 +15,8 @@
   id: LaserStun
   categories: [ HideSpawnMenu ]
   components:
-  - type: StaminaDamageOnCollide
-    damage: 33
+  - type: HitscanStaminaDamage
+    staminaDamage: 33
   - type: HitscanBasicDamage
     damage:
       types:
