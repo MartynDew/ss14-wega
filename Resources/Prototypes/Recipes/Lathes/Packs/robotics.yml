@@ -16,6 +16,7 @@
   - BorgModuleCable
   - BorgModuleFireExtinguisher
   - BorgModuleInflatable
+  - BorgModuleArtistry
  # Corvax-Wega-Start
   - BorgModuleCommonConstruction
   - BorgModuleCommonMedical
@@ -41,7 +42,7 @@
   recipes:
   - ProximitySensor
   # Corvax-Wega-Android-Start
-  - AndroidBodyPart 
+  - AndroidBodyPart
   - ArmSyntheticPry
   - ArmSyntheticDefib
   - ArmSyntheticProtoKinetic
