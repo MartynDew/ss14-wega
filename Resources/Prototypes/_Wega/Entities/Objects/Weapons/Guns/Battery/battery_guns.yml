@@ -33,12 +33,10 @@
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: RedMediumLaser
-      name: боевого лазера
       fireCost: 100
       state: lethal
       magState: lethal
     - proto: LaserStun
-      name: станер лазера
       fireCost: 62.5
       state: disabler
       magState: disabler

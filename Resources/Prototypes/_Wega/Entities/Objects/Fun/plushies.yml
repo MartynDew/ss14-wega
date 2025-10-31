@@ -48,9 +48,6 @@
       head:
       - state: equipped-HELMET
         offset: "0, 0.03"
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: TegPlushie
 
 - type: entity
   parent: BasePlushie
@@ -94,9 +91,6 @@
       head:
       - state: equipped-HELMET
         offset: "0, 0.03"
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: TajarPlushie
 
 - type: entity
   parent: BasePlushie
@@ -140,6 +134,3 @@
       head:
       - state: equipped-HELMET
         offset: "0, 0.03"
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: VulpaPlushie

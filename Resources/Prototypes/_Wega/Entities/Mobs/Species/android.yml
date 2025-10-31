@@ -202,7 +202,6 @@
       methods: [ Touch ]
       effects:
       - !type:Electrocute
-        electrocuteDamageScale: 1
   - type: Operated
     raceGraph: AndroidSurgery
     limbLossChance: 1.75

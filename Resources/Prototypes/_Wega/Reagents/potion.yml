@@ -25,7 +25,6 @@
         component: SeeingRainbows
         type: Add
         time: 16
-        refresh: false
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.1
         sprintSpeedModifier: 1.1

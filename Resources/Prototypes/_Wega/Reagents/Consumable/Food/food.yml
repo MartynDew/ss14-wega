@@ -13,7 +13,6 @@
         effectProto: StatusEffectSeeingRainbow
         time: 5
         type: Add
-        refresh: false
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Ariral ]
