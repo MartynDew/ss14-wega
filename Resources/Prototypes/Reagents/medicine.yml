@@ -1116,7 +1116,7 @@
     Medicine:
           # metabolismRate: 0.25  # Corvax-Wega-Change
       effects:
-      - !type:ModifyBleedAmount  # Corvax-Wega-Change
+      - !type:ModifyBleed  # Corvax-Wega-Change
         amount: -1.5  # Corvax-Wega-Change
       - !type:HealthChange
         damage:
@@ -1125,7 +1125,8 @@
             Blunt: 0.1  # Corvax-Wega-Change
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Puncturase
           min: 12  # Corvax-Wega-Change
         damage:
           types:
@@ -1182,16 +1183,17 @@
       # Corvax-Wega-BloodCult-start
       - !type:HolyPurification
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Holywater
           min: 40
        # Corvax-Wega-BloodCult-end
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
           max: 50
-        - !type:OrganType
-          type: Vampire
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Vampire ]
+          inverted: true
         damage:
           types:
             Blunt: -0.2

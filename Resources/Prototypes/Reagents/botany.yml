@@ -224,13 +224,10 @@
       # Corvax-Wega-Disease-start
       - !type:ChemAtmosPoolSource
         conditions:
-        - !type:OrganType
-          type: Rat
-          shouldHave: false
-        - !type:OrganType
-          type: Vox
-          shouldHave: false
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [ Rat, Vox ]
+          inverted: true
+        - !type:ReagentCondition
           reagent: Ammonia
           min: 1
       # Corvax-Wega-Disease-end

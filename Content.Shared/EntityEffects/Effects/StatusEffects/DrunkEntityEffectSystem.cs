@@ -17,8 +17,8 @@ public sealed partial class DrunkEntityEffectSystem : EntityEffectSystem<MetaDat
     {
         var boozePower = args.Effect.BoozePower * args.Scale;
 
-        var EntMan = IoCManager.Resolve<IEntityManager>(); // Corvax-Wega-Genetics
-        if (EntMan.HasComponent<SoberGenComponent>(entity)) // Corvax-Wega-Genetics
+        var entMan = IoCManager.Resolve<IEntityManager>(); // Corvax-Wega-Genetics
+        if (entMan.HasComponent<SoberGenComponent>(entity)) // Corvax-Wega-Genetics
             boozePower *= 0.5f; // Corvax-Wega-Genetics
 
         _drunk.TryApplyDrunkenness(entity, boozePower);

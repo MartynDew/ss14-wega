@@ -124,7 +124,7 @@
       # Corvax-Wega-Disease-start
       - !type:ChemCauseRandomDisease
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Mold
           min: 1
         diseases:
@@ -314,12 +314,15 @@
   - !type:PlantAdjustMutationLevel
     amount: 1
   metabolisms:
+    # Corvax-Wega-Genetics-start
     Medicine:
       effects:
       - !type:ChemMutateDna
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: UnstableMutagen
           min: 50
+    # Corvax-Wega-Genetics-end
     Poison:
       effects:
       - !type:HealthChange
