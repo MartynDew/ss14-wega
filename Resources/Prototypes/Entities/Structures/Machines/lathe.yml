@@ -212,6 +212,9 @@
     - Janitor
     - Instruments
     - Equipment
+    - SalvagePlasmaCutter # Corvax-Wega-Edit
+    - CombatMagBoots # Corvax-Wega-Edit
+    - SyperSynth # Corvax-Wega-Edit
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
@@ -409,6 +412,7 @@
     - SecurityWeapons
     - SecurityDisablers
     - ImplantSB # Corvax-Wega-Edit
+    - SalvageWeapons # Corvax-Wega-Edit
   - type: MaterialStorage
     whitelist:
       tags:

@@ -232,3 +232,19 @@
 
 - type: Tag
   id: Shrimp
+
+- type: Tag
+  id: Package
+
+- type: Tag
+  id: MagazineRifleExplosive
+
+- type: Tag
+  id: CartridgeRifleExplosive
+
+- type: Tag
+  id: MagazineVyvernaRifle
+
+- type: Tag
+  id: CartridgeVyvernaRifle
+
