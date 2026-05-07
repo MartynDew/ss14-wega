@@ -5,7 +5,7 @@
   authors: Emisse
 
 - files: ["barratry.yml"]
-  authors: Emogarbage, Scribbles0
+  authors: блядун, Scribbles0
  
 - files: ["box.yml"]
   authors: ACJM, Emisse
