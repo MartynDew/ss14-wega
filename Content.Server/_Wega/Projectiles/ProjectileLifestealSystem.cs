@@ -35,6 +35,6 @@ public sealed partial class ProjectileLifestealSystem : EntitySystem
         if (healAmount <= 0)
             return;
 
-        _damage.HealDistributed(shooter, healAmount);
+        _damage.HealDistributed(shooter, -healAmount);
     }
 }

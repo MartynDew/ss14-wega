@@ -115,3 +115,30 @@
     revertOnDeath: true
     transferDamage: false
     revertOnCrit: false
+    
+- type: polymorph
+  id: PolymorphClockworkMarouderSword
+  configuration:
+    entity: MobClockworkMarouder
+    forced: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false
+    
+- type: polymorph
+  id: PolymorphClockworkMarouderSpear
+  configuration:
+    entity: MobClockworkMarouderSpear
+    forced: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false
+    
+- type: polymorph
+  id: PolymorphClockworkMarouderHammer
+  configuration:
+    entity: MobClockworkMarouderHammer
+    forced: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false

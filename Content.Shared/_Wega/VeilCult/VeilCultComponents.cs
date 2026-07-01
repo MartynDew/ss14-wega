@@ -49,6 +49,13 @@ public sealed partial class VeilCultBeaconComponent : Component
     public int MaxNameChars = 15;
 }
 
+[RegisterComponent]
+public sealed partial class RathvarComponent : Component
+{
+    public float NextTimeTick { get; set; } = 5;
+}
+}
+
 [RegisterComponent, NetworkedComponent]
 public sealed partial class AutoVeilCultistComponent : Component;
 
@@ -85,6 +92,13 @@ public sealed partial class VeilCultPortalComponent : Component
     public SoundSpecifier RitualMusic = new SoundCollectionSpecifier("BloodCultMusic");
 
     public bool SoundPlayed;
+}
+
+[RegisterComponent]
+public sealed partial class PolymorphModuleComponent : Component
+{
+    [DataField(required: true)]
+    public ProtoId<PolymorphPrototype> Proto;
 }
 
 /// <summary>
@@ -250,6 +264,16 @@ public sealed partial class NorthStarEnchantComponent : Component
 {
     [DataField]
     public float AttackRate = 4f;
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class TripleShotEnchantComponent : Component
+{
+    [DataField]
+    public float AttackRate = 3f;
+    
+    [DataField]
+    public TimeSpan Time = TimeSpan.FromSeconds(2);
 }
 
 [RegisterComponent, NetworkedComponent]

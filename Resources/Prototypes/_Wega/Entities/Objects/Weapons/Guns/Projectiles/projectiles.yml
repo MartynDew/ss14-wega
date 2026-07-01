@@ -147,3 +147,97 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_blue
+      
+
+- type: entity
+  name: energy arrow
+  id: EnergyArrow
+  parent: BulletLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Guns/Projectiles/energy_arrow.rsi
+    layers:
+    - state: basic
+      shader: unshaded
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Heat: 23
+        Shock: 8
+  - type: IgniteOnCollide
+    fireStacks: 1
+    
+- type: entity
+  name: energy arrow
+  id: EnergyArrowTriple
+  parent: EnergyArrow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Heat: 17
+        Shock: 6
+  - type: IgniteOnCollide
+    fireStacks: 0.75
+
+- type: entity
+  parent: PelletShotgun
+  id: PelletShotgunSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: EnergyArrowTriple
+    count: 3
+    spread: 15
+    
+- type: entity
+  name: energy arrow
+  id: EnergyArrowLifesteal
+  parent: EnergyArrow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Guns/Projectiles/energy_arrow.rsi
+    layers:
+    - state: lifesteal
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Heat: 15
+        Shock: 3
+        Piercing: 3
+  - type: IgniteOnCollide
+    fireStacks: 0
+  - type: ProjectileLifesteal
+    stealAmount: 7
+    
+- type: entity
+  name: energy arrow
+  id: EnergyArrowAnnihilation
+  parent: EnergyArrow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Guns/Projectiles/energy_arrow.rsi
+    layers:
+    - state: annihilation
+      shader: unshaded
+  - type: Projectile
+    deleteOnCollide: false
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Heat: 39
+        Shock: 17
+        Structural: 50
+  - type: IgniteOnCollide
+    fireStacks: 2
+  - type: TimedDespawn
+    lifetime: 0.8

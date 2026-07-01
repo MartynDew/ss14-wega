@@ -1579,6 +1579,19 @@
   # Clockwork
   
 - type: entity
+  id: BorgModuleClockwork
+  parent: BaseItem
+  name: clockwork cyborg module
+  description: A module, made of brass by Rathvar cult members.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Robotics/borgmodule.rsi
+    layers:
+    - state: clockwork
+  - type: PolymorphModule
+    proto: Ratvarborg
+  
+- type: entity
   id: BorgModuleClockworkWeapon
   parent: [ BaseBorgModuleRatvar, BaseProviderBorgModule ]
   name: clockwork cyborg module

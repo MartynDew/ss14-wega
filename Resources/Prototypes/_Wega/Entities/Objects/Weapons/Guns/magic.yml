@@ -25,3 +25,112 @@
     canBeEaten: false
   - type: ItemToggle
     onUse: false
+    
+- type: entity
+  parent: BaseEnchantable
+  id: WeaponVeilCultCrossbowBasic
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Guns/Basic/brass_crossbow.rsi
+  - type: Item
+    sprite: _Wega/Objects/Weapons/Guns/Basic/brass_crossbow.rsi
+    size: Ginormous
+  - type: Clothing
+    slots:
+    - back
+  - type: Gun
+    fireRate: 0.5 # You need some time to prepare your shot
+    selectedMode: SemiAuto
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
+    soundEmpty: null
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4 #2 seconds of KD, should always have CD > KD
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/energycrossbow_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: EnergyArrow
+    capacity: 1
+    count: 1
+  - type: MultiHandedItem
+  - type: Enchantable
+    enchants:
+    - WeaponVeilCultCrossbowLifesteal
+    - WeaponVeilCultCrossbowAnnihilation
+    - WeaponVeilCultCrossbowTripleShot
+  - type: Tag
+    tags:
+    - VeilWeapon
+  - type: CultAllowedGun
+  
+- type: entity
+  parent: BaseEnchantable
+  id: WeaponVeilCultCrossbowTripleShot
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Guns/Basic/brass_crossbow.rsi
+    layers:
+    - state: icon
+    - state: tripleshot
+      shader: unshaded
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 6
+  - type: BasicEntityAmmoProvider
+    proto: EnergyArrowTripleSpread
+  - type: Enchantable
+    enchants:
+    - WeaponVeilCultCrossbowBasic
+    - WeaponVeilCultCrossbowAnnihilation
+    - WeaponVeilCultCrossbowLifesteal
+    
+- type: entity
+  parent: BaseEnchantable
+  id: WeaponVeilCultCrossbowLifesteal
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Guns/Basic/brass_crossbow.rsi
+    layers:
+    - state: icon
+    - state: lifesteal
+      shader: unshaded
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+  - type: BasicEntityAmmoProvider
+    proto: EnergyArrowLifesteal
+  - type: Enchantable
+    enchants:
+    - WeaponVeilCultCrossbowBasic
+    - WeaponVeilCultCrossbowAnnihilation
+    - WeaponVeilCultCrossbowTripleShot
+    
+- type: entity
+  parent: BaseEnchantable
+  id: WeaponVeilCultCrossbowAnnihilation
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Guns/Basic/brass_crossbow.rsi
+    layers:
+    - state: icon
+    - state: annihilation
+      shader: unshaded
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 8
+  - type: BasicEntityAmmoProvider
+    proto: EnergyArrowAnnihilation
+  - type: Enchantable
+    enchants:
+    - WeaponVeilCultCrossbowBasic
+    - WeaponVeilCultCrossbowLifesteal
+    - WeaponVeilCultCrossbowTripleShot

@@ -636,6 +636,7 @@
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: DisarmMalus
+  - type: Unremoveable
   - type: Tag
     tags:
     - VeilWeapon
@@ -691,6 +692,37 @@
   - type: Tag
     tags:
     - VeilWeapon
+
+- type: entity
+  id: WeaponClockHammerBorg
+  parent: BaseEnchantable
+  name: clock hammer
+  description: A large and lifty hammer, that can throw it targets on hit. For the righteous of Ratvar.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Melee/clock_hammer.rsi
+    state: icon
+  - type: Item
+    storedRotation: -45
+    size: Large
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.7
+    damage:
+      types:
+        Blunt: 25
+        Structural: 50
+    soundHit:
+        collection: MetalThud
+  - type: StaminaDamageOnHit
+    damage: 25
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 90
+  - type: Tag
+    tags:
+    - VeilWeapon
+  - type: Unremoveable
 
 - type: entity
   parent: BaseEnchantable
@@ -755,6 +787,32 @@
   - type: Tag
     tags:
     - VeilWeapon
+
+- type: entity
+  parent: BaseEnchantable
+  id: WeaponRatvarianSpearBorg
+  name: ratvarian spear
+  description: The spear formed from clockwork metal for righteous of Ratvar.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Melee/clock_spear.rsi
+    state: icon
+  - type: Sharp
+  - type: Item
+    size: Normal
+  - type: MeleeWeapon
+    range: 2
+    damage:
+      types:
+        Piercing: 25
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Tag
+    tags:
+    - VeilWeapon
+  - type: Unremoveable
 
 - type: entity
   parent: BaseItem

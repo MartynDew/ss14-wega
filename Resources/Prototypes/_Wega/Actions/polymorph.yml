@@ -21,3 +21,46 @@
     revertOnDeath: true
     revertOnCrit: true
     cooldown: 160
+    
+- type: entity
+  parent: BaseActionPolymorph
+  id: ActionPolymorphClockworkMarouderSword
+  name: Sword Defender Polymorph
+  description: Polymorphs you into a mark.
+  components:
+  - type: Action
+    icon:
+      sprite: _Wega/Mobs/Lavaland/clockwork_defender.rsi
+      state: base
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: PolymorphClockworkMarouderSword
+      
+- type: entity
+  parent: BaseActionPolymorph
+  id: ActionPolymorphClockworkMarouderSpear
+  name: Spear Defender Polymorph
+  description: Polymorphs you into a mark.
+  components:
+  - type: Action
+    icon:
+      sprite: _Wega/Mobs/Lavaland/clockwork_defender.rsi
+      state: spear
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: PolymorphClockworkMarouderSpear
+      
+- type: entity
+  parent: BaseActionPolymorph
+  id: ActionPolymorphClockworkMarouderHammer
+  name: Hammer Defender Polymorph
+  description: Polymorphs you into a mark.
+  components:
+  - type: Action
+    icon:
+      sprite: _Wega/Mobs/Lavaland/clockwork_defender.rsi
+      state: hammer
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: PolymorphClockworkMarouderHammer
+      

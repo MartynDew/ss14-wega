@@ -3,6 +3,7 @@ using Content.Server.Audio;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Pinpointer;
 using Content.Server.Bible.Components;
+using Content.Server.Polymorph.Systems;
 using Content.Shared.Veil.Cult;
 using Content.Shared.Veil.Cult.UI;
 using Content.Shared.Veil.Cult.Components;
@@ -29,6 +30,7 @@ using Content.Shared.NullRod.Components;
 using Content.Shared.Lathe;
 using Content.Shared.Mobs;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Wires;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -56,6 +58,7 @@ public sealed partial class VeilCultSystem : SharedVeilCultSystem
     [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private RejuvenateSystem _rejuvenate = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private PolymorphSystem _polymorph = default!;
 
     public override void Initialize()
     {
@@ -138,6 +141,10 @@ public sealed partial class VeilCultSystem : SharedVeilCultSystem
             if (cogComponent.NextTimeTick <= 0)
             {
                 cogComponent.NextTimeTick = 5;
+                var nearbyInfected = _entityLookup.GetEntitiesInRange<InteractionCogInfectedComponent>(Transform(cog).Coordinates, 2f)
+                if (nearbyInfected.Count > 1)
+                    continue;
+                
                 if (TryComp<BatteryComponent>(cog, out var battery))
                 {
                     if (_battery.TryUseCharge((cog, battery), cogComponent.PowerRate))
@@ -158,7 +165,7 @@ public sealed partial class VeilCultSystem : SharedVeilCultSystem
         var ritualQuery = EntityQueryEnumerator<VeilCultPortalComponent>();
         while (ritualQuery.MoveNext(out var portal, out var comp))
         {
-            if (!comp.SoundPlayed && comp.NextTimeTick > 90)
+            if (!comp.SoundPlayed && comp.NextTimeTick > 210)
             {
                 _sound.PlayGlobalOnStation(portal, _audio.ResolveSound(comp.RitualMusic));
                 comp.SoundPlayed = true;
@@ -254,7 +261,6 @@ public sealed partial class VeilCultSystem : SharedVeilCultSystem
                         {
                             var soulStone = Spawn("VeilCultSoulVessel", Transform(target).Coordinates);
                             _mind.TransferTo(mindContainer.Mind.Value, soulStone);
-                            EnsureComp<AbsorbedByVeilComponent>(target);
                         }
                         else continue;
                     }
@@ -269,11 +275,13 @@ public sealed partial class VeilCultSystem : SharedVeilCultSystem
 
                     EnsureComp<AutoVeilCultistComponent>(target);
                     _rejuvenate.PerformRejuvenate(target);
-                    EnsureComp<AbsorbedByVeilComponent>(target);
                 }
 
                 if (!HasComp<AbsorbedByVeilComponent>(target))
+                {
+                    EnsureComp<AbsorbedByVeilComponent>(target);
                     cult.EnergyCount += 100;
+                }
 
                 break;
             }
@@ -335,7 +343,7 @@ public sealed partial class VeilCultSystem : SharedVeilCultSystem
 
         AnnounceRitualActivation(uid);
         var portal = Spawn("VeilCultPortal", Transform(uid).Coordinates);
-        Timer.Spawn(TimeSpan.FromSeconds(180), () => CompleteRitual(portal));
+        Timer.Spawn(TimeSpan.FromSeconds(300), () => CompleteRitual(portal));
         QueueDel(args.Target.Value);
         cult.RitualGoing = true;
     }
@@ -406,6 +414,18 @@ public sealed partial class VeilCultSystem : SharedVeilCultSystem
             }
         }
     }
+    
+    private void OnModuleInsert(EntityUid uid, PolymorphModuleComponent comp, AfterInteractEvent args)
+    {
+        if (args.Target != null && HasComp<BorgChassisComponent>(args.Target))
+        {
+            if (TryComp<WiresPanelComponent>(args.Target.Value, out var wires) && !wires.Open)
+                return;
+            var polymorphed = _polymorph.PolymorphEntity(args.Target.Value, comp.Proto);
+            if (polymorphed != null)
+                QueueDel(uid);
+            args.Handled = true;
+        }
 
     private void OnConstructMobStateChange(EntityUid uid, VeilCultConstructComponent comp, MobStateChangedEvent args)
     {

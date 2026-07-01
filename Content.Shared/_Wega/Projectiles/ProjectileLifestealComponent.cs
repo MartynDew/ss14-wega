@@ -6,4 +6,6 @@ namespace Content.Shared.Projectiles;
 public sealed partial class ProjectileLifestealComponent : Component
 {
     [DataField] public FixedPoint2 StealAmount;
+    
+    [DataField] public bool OnlyStealAmount = false;
 }

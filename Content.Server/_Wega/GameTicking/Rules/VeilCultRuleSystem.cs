@@ -188,7 +188,8 @@ namespace Content.Server.GameTicking.Rules
 
                 if (TryComp<NavMapBeaconComponent>(target, out var beacon) && beacon.DefaultText != null)
                 {
-                    _target.SetTarget(objective.Value, target);
+                    var objectiveBeacon = Spawn("VeilCultObjectiveBeacon", Transform(beacon).Coordinates);
+                    _target.SetTarget(objective.Value, objectiveBeacon);
                     _meta.SetEntityName(objective.Value, Loc.GetString("objective-condition-veil-ritual-beacon-title",
                         ("targetName", Loc.GetString(beacon.DefaultText))));
                     _mind.AddObjective(mindId, mind, objective.Value);

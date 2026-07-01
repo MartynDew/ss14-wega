@@ -61,6 +61,7 @@ public sealed partial class VeilCultSystem
         // Activate Action at enchanted item
         SubscribeLocalEvent<EnchantedComponent, CrusherEnchantActionEvent>(OnActivateCrusher);
         SubscribeLocalEvent<EnchantedComponent, ConfusionEnchantActionEvent>(OnActivateConfusion);
+        SubscribeLocalEvent<EnchantedComponent, TripleShotEnchantActionEvent>(OnActivateTripleShot);
         SubscribeLocalEvent<EnchantedComponent, KnockbackEnchantActionEvent>(OnActivateKnockback);
         SubscribeLocalEvent<EnchantedComponent, SwordsmenEnchantActionEvent>(OnActivateSwordsmen);
         SubscribeLocalEvent<EnchantedComponent, BloodshedEnchantActionEvent>(OnActivateBloodShed);
@@ -76,6 +77,7 @@ public sealed partial class VeilCultSystem
         // Enchants
         SubscribeLocalEvent<CrusherEnchantComponent, MeleeHitEvent>(CrusherOnMeleeHit);
         SubscribeLocalEvent<ConfusionEnchantComponent, MeleeHitEvent>(ConfusionOnMeleeHit);
+        SubscribeLocalEvent<TripleShotEnchantComponent, MeleeHitEvent>(TripleShotOnMeleeHit);
         SubscribeLocalEvent<KnockbackEnchantComponent, MeleeHitEvent>(KnockbackOnMeleeHit);
         SubscribeLocalEvent<StunEnchantComponent, MeleeHitEvent>(StunOnMeleeHit);
         SubscribeLocalEvent<ForcePassageEnchantComponent, MeleeHitEvent>(ForcePassageOnMeleeHit);
@@ -129,6 +131,12 @@ public sealed partial class VeilCultSystem
     private void OnActivateConfusion(EntityUid uid, EnchantedComponent comp, ConfusionEnchantActionEvent args)
     {
         EnsureComp<ConfusionEnchantComponent>(uid);
+        args.Handled = true;
+    }
+    
+    private void OnActivateTripleShot(EntityUid uid, EnchantedComponent comp, TripleShotEnchantActionEvent args)
+    {
+        EnsureComp<TripleShotEnchantComponent>(uid);
         args.Handled = true;
     }
 
@@ -344,6 +352,25 @@ public sealed partial class VeilCultSystem
             {
                 EnsureComp<ConfusionComponent>(target);
                 Timer.Spawn(comp.Time, () => RemComp<ConfusionComponent>(target));
+            }
+        }
+
+        RemComp<EnchantedComponent>(uid);
+        RemComp<ConfusionEnchantComponent>(uid);
+    }
+    
+    private void TripleShotOnMeleeHit(EntityUid uid, TripleShotEnchantComponent comp, MeleeHitEvent args)
+    {
+        foreach (var target in args.HitEntities)
+        {
+            if (HasComp<MobStateComponent>(target))
+            {
+                if (TryComp<MeleeWeaponComponent>(uid, out var weapon))
+                {
+                    var oldSpeed = weapon.AttackRate;
+                    weapon.AttackRate = comp.AttackRate;
+                    Timer.Spawn(comp.Time, () => weapon.AttackRate = oldSpeed);
+                }
             }
         }
 

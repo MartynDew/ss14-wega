@@ -29,9 +29,18 @@
     baseSprintSpeed: 4
   - type: Butcherable
     spawned:
-    - id: SheetBrass1 # временная заглушка
+    - id: SheetBrass1
       amount: 3
       prob: 0.5
+  - type: Hands
+    hands:
+      hand:
+        location: Right
+        whitelist:
+          tags:
+          - VeilWeapon
+    sortedHands:
+    - hand_right
   - type: NoSlip
   - type: IgnoreSpiderWeb
   - type: AntiGravityClothing
@@ -39,9 +48,74 @@
   - type: VeilCultConstruct
   - type: MindContainer
   - type: PressureImmunity
-  - type: ActiveRadio
-    channels:
-    - Binary
+  - type: Loadout
+    prototypes: [ MobClockworkMarouderGear ]
+
+- type: entity
+  name: clockwork cocoon
+  parent: BaseMob
+  id: MobClockworkCocoon
+  description: It will be a great warrior in future.
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Wega/Mobs/Lavaland/clockwork_defender.rsi
+  - type: ActionGrant
+    actions:
+    - ActionPolymorphClockworkMarouderSpear
+    - ActionPolymorphClockworkMarouderSword
+    - ActionPolymorphClockworkMarouderHammer
+
+- type: entity
+  name: clockwork defender
+  parent: MobClockworkMarouder
+  id: MobClockworkMarouderSpear
+  description: A traitorous clockwork knight who live on, defending it creators.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Wega/Mobs/Lavaland/clockwork_defender.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: spear
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spear
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: Loadout
+    prototypes: [ MobClockworkMarouderSpearGear ]
+    
+- type: entity
+  name: clockwork defender
+  parent: MobClockworkMarouder
+  id: MobClockworkMarouderHammer
+  description: A traitorous clockwork knight who live on, defending it creators.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Wega/Mobs/Lavaland/clockwork_defender.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: spear
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spear
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      240: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+  - type: Loadout
+    prototypes: [ MobClockworkMarouderHammerGear ]
 
   # Cogscarab
 
@@ -146,11 +220,29 @@
     channels:
     - Binary
 
+# GEAR
+
 - type: startingGear
   id: MobCogscarabGear
   inhand:
   - OmnitoolUnremovable
 
+- type: startingGear
+  id: MobClockworkMarouderGear
+  inhand:
+  - WeaponClockworkSwordBorg
+  
+- type: startingGear
+  id: MobClockworkMarouderSpearGear
+  inhand:
+  - WeaponClockworkSpearBorg
+  
+- type: startingGear
+  id: MobClockworkMarouderHammerGear
+  inhand:
+  - WeaponClockworkHammerBorg
+
+# sub-items
 
 - type: entity
   name: omnitool

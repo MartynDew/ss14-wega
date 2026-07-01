@@ -1,0 +1,8 @@
+- type: entity
+  id: VeilCultObjectiveBeacon
+  parent: MarkerBase
+  name: objective beacon (veil cult)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: pink

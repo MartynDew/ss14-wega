@@ -50,6 +50,11 @@
     interfaces:
       enum.VeilBeaconUiKey.Key:
         type: VeilBeaconBoundUserInterface
+  - type: AmbientSound
+    volume: 1
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
 
 - type: entity
   id: VeilCultStructureAltar
@@ -207,3 +212,5 @@
     sound:
       path: /Audio/Ambience/Objects/anomaly_generator.ogg
   - type: VeilCultPortal
+  - type: NavMapBeacon
+    defaultText: nav-map-beacon-ritual
